@@ -62,7 +62,7 @@ export default async function CountryDetails({ params }: { params: { code: strin
             <div className="mt-12">
               <h2 className="text-2xl font-bold mb-6">Border Countries:</h2>
               <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-                {bordersData.map((border: any) => (
+                {bordersData.map((border: CountryDetailsss) => (
                   <CountryCard
                     key={border.cca3}
                     code={border.cca3}
