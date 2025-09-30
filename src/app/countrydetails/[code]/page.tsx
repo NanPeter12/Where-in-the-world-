@@ -10,8 +10,11 @@ interface Props {
 }
 
 export default async function CountryDetails({ params }: Props) {
-  // هنا متأكد إن params.code جاهز
-  const country: CountryDetailsss = await getSpecifiedCountry(params.code);
+  const code = params.code as string; 
+
+  const country: CountryDetailsss = await getSpecifiedCountry(code);
+
+  console.log("params", params);
 
   const nativeName =
     country.name?.nativeName
