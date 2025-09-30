@@ -1,9 +1,9 @@
 import BackBtn from "_/app/_Components/BackBtn/BackBtn";
 import CountryCard from "_/app/_Components/CountryCard/CountryCard";
-import { CountryDetailsss } from "_/app/Interfaces/types";
+import { CountryDetailsss, Props } from "_/app/Interfaces/types";
 import { getDetailedCountryByBorderName, getSpecifiedCountry } from "_/app/services/countries-services";
 
-export default async function CountryDetails({ params }: { params: { code: string } }) {
+export default async function CountryDetails({ params }: Props) {
   const country: CountryDetailsss = await getSpecifiedCountry(params.code);
 
   const nativeName =
