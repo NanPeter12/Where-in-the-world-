@@ -1,12 +1,3 @@
-export type CountryCardProps = {
-  code: string
-  flag: string;
-  name: string;
-  population: number;
-  region: string;
-  capital: string;
-};
-
 export type Country = {
   cca3: string;
   name: {
@@ -20,6 +11,14 @@ export type Country = {
   region: string;
   capital?: string[];
 };
+export type CountryCardProps = {
+  flag: string;
+  name: string;
+  population: number;
+  region: string;
+  capital: string;
+  code: string;
+};
 
 export type InputForSearchProps = {
   countries: Country[];
@@ -31,7 +30,7 @@ export type SearchWrapperProps = {
 };
 
 // types/country.ts
-export interface  CountryDetailsss {
+export interface CountryDetailsss {
   name: {
     common: string;
     official: string;
@@ -65,8 +64,3 @@ export interface  CountryDetailsss {
   borders?: string[];
 }
 
-// export type Props = {
-//   params: {
-//     code: string;
-//   };
-// };
