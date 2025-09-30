@@ -11,7 +11,7 @@ type Props = {
 
 export default async function CountryDetails({ params }: Props) {
 
-  const { code } = await params;
+  const { code } = params;
   console.log("params", params)
   const country: CountryDetailsss = await getSpecifiedCountry(code);
 
