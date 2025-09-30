@@ -3,18 +3,13 @@ import CountryCard from "_/app/_Components/CountryCard/CountryCard";
 import { CountryDetailsss } from "_/app/Interfaces/types";
 import { getDetailedCountryByBorderName, getSpecifiedCountry } from "_/app/services/countries-services";
 
-type Props = {
-  params: {
-    code: string;
-  };
+interface Props {
+  params: Promise<{ code: string }>; 
 }
 
 export default async function CountryDetails({ params }: Props) {
-
-  const { code } = params;
-  console.log("params", params)
+  const { code } = await params; 
   const country: CountryDetailsss = await getSpecifiedCountry(code);
-
 
   const nativeName =
     country.name?.nativeName
@@ -71,7 +66,7 @@ export default async function CountryDetails({ params }: Props) {
             <div className="mt-12">
               <h2 className="text-2xl font-bold mb-6">Border Countries:</h2>
               <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-                {bordersData.map((border: CountryDetailsss) => (
+                {bordersData.map(border => (
                   <CountryCard
                     key={border.cca3}
                     code={border.cca3}
