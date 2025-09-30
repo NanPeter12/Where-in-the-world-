@@ -65,8 +65,8 @@ export interface  CountryDetailsss {
   borders?: string[];
 }
 
-export type Props = {
-  params: {
-    code: string;
-  };
-};
+// export type Props = {
+//   params: {
+//     code: string;
+//   };
+// };

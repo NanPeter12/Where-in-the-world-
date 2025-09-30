@@ -1,9 +1,16 @@
 import BackBtn from "_/app/_Components/BackBtn/BackBtn";
 import CountryCard from "_/app/_Components/CountryCard/CountryCard";
-import { CountryDetailsss, Props } from "_/app/Interfaces/types";
+import { CountryDetailsss } from "_/app/Interfaces/types";
 import { getDetailedCountryByBorderName, getSpecifiedCountry } from "_/app/services/countries-services";
 
+interface Props {
+  params: {
+    code: string;
+  };
+}
+
 export default async function CountryDetails({ params }: Props) {
+  // هنا متأكد إن params.code جاهز
   const country: CountryDetailsss = await getSpecifiedCountry(params.code);
 
   const nativeName =
@@ -13,20 +20,19 @@ export default async function CountryDetails({ params }: Props) {
 
   const currencies =
     country.currencies
-      ? Object.keys(country.currencies).map((key) => country.currencies![key].name).join(", ")
+      ? Object.keys(country.currencies).map(key => country.currencies![key].name).join(", ")
       : "N/A";
 
   const languages =
     country.languages
-      ? Object.keys(country.languages).map((key) => country.languages![key]).join(", ")
+      ? Object.keys(country.languages).map(key => country.languages![key]).join(", ")
       : "N/A";
 
   let bordersData: CountryDetailsss[] = [];
 
-  if (country.borders && country.borders.length > 0) {
+  if (country.borders?.length) {
     bordersData = await getDetailedCountryByBorderName(country.borders);
   }
-
 
   return (
     <main className="container mx-auto px-4 py-8">
@@ -62,7 +68,7 @@ export default async function CountryDetails({ params }: Props) {
             <div className="mt-12">
               <h2 className="text-2xl font-bold mb-6">Border Countries:</h2>
               <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-                {bordersData.map((border: CountryDetailsss) => (
+                {bordersData.map(border => (
                   <CountryCard
                     key={border.cca3}
                     code={border.cca3}
@@ -70,13 +76,12 @@ export default async function CountryDetails({ params }: Props) {
                     name={border.name.common}
                     population={border.population}
                     region={border.region}
-                    capital={border.capital ? border.capital[0] : "N/A"}
+                    capital={border.capital?.[0] || "N/A"}
                   />
                 ))}
               </div>
             </div>
           )}
-
         </div>
       </div>
     </main>
